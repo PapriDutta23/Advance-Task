@@ -1,0 +1,571 @@
+{
+	"info": {
+		"_postman_id": "77c7ac27-fab7-486e-8d8f-b6870acd70c8",
+		"name": "REQRES",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"item": [
+				{
+					"name": "GET the List of All User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7c779444-2523-49fb-a8f6-329e87109b1a",
+								"exec": [
+									"pm.test(\"Body matches string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"Michael\");\r",
+									"});\r",
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/users?page=2\n",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2\n"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET a Single User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "dd051919-e91c-4dd3-8338-e82f58980ec1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/users/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						},
+						"description": "List of All Users"
+					},
+					"response": []
+				},
+				{
+					"name": "GET Single User Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "94ba9916-ce38-46cf-83c0-790681e87459",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/users/23\n",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"23\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Single Resource",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "07009bbc-67c8-4ad2-9592-16f961900b3e",
+								"exec": [
+									"\r",
+									"pm.test(\"Cache-Control is present\", function () {\r",
+									"    pm.response.to.have.header(\"Cache-Control\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/unknown/?id=3",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"unknown",
+								""
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET List Of Resources",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "d712f3cc-3fcf-49f7-ac0a-f2becdc9953f",
+								"exec": [
+									"\r",
+									"pm.test(\"Your test name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql.toString(\"cerulean\");\r",
+									"});\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/unknown\n",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"unknown\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Single Resource Not Found",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "eef855db-d331-4da4-851e-08f085e842dc",
+								"exec": [
+									"pm.test(\"Status code is 404\", function () {\r",
+									"\r",
+									"    pm.response.to.have.status(404);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/unknown/33\n",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"unknown",
+								"33\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Delayed Response",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "26d13ec5-c5d0-444c-b646-d4f26dd110b1",
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {\r",
+									"    pm.response.to.have.status(200);\r",
+									"});\r",
+									"pm.test(\"Response time is less than 200ms\", function () {\r",
+									"    pm.expect(pm.response.responseTime).to.be.above(200);\r",
+									"\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/users?delay=3\n",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							],
+							"query": [
+								{
+									"key": "delay",
+									"value": "3\n"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "POST",
+			"item": [
+				{
+					"name": "Create New User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "fad7d6d1-fb59-4e84-8993-1ef2165756d6",
+								"exec": [
+									"pm.test(\"My Test Contains the name\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.name).to.eql.toString(\"morpheus\")\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"morpheus\",\r\n    \"job\": \"leader\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Register Successful",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c424c6d9-3436-4adf-8101-a0354a160d8f",
+								"exec": [
+									"pm.test(\"Body matches with the TOKEN string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"QpwL5tke4Pnpja7X4\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "\r\n{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/register",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Register Unsuccessful",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b596641b-6adc-4dcb-a77a-d981e2f3145a",
+								"exec": [
+									"pm.test(\"Response Body Contains the string\", function () {\r",
+									"    pm.expect(pm.response.text()).to.include(\"eve.holt@reqres.in\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"pistol\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/register\n",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"register\n"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Login Successful",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "2c5cd753-a1a6-41a6-bced-047da26fa80b",
+								"exec": [
+									"pm.test(\"Status code is 400\", function () {\r",
+									"    pm.response.to.have.status(400);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"eve.holt@reqres.in\",\r\n    \"password\": \"cityslicka\"\r\n}"
+						},
+						"url": {
+							"raw": "{{URL}}/api/login",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST Login Unsuccessful",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8878a62e-d001-4e63-bdac-5961e73b1191",
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {\r",
+									"    pm.response.to.have.status(201);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"peter@klaven\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/login\n",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"login\n"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "PUT",
+			"item": [
+				{
+					"name": "PUT Update Existing User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "22565a56-e9dc-4e4e-87d9-2cc8ca14831a",
+								"exec": [
+									"pm.test(\"The Job should be Test Analyst\", function () {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.expect(jsonData.job).to.eql.toString(\"Test Analyst\");\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Rachel\",\r\n    \"job\": \"Test Analyst\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URL}}/api/users/12",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"12"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "DELETE",
+			"item": [
+				{
+					"name": "DELETE an Existing Request",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "e02a0d17-97ac-4fb3-a27f-10ce74e18175",
+								"exec": [
+									"pm.test(\"Status code after successful Deletion would be 204\", function () {\r",
+									"    pm.response.to.have.status(204);\r",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/api/users/2",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"2"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}
